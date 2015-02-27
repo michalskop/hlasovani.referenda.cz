@@ -16,7 +16,7 @@ $text = [
   'og:site_name' => 'Poslanecká rosnička',
   'author_link' => 'http://kohovolit.eu',
   
-  'google_analytics_code' => 'UA-57002774-1',
+  'google_analytics_code' => 'UA-8592359-18',
 
   'terms' => 'Období',
   'all_terms' => 'Všechna volební období',

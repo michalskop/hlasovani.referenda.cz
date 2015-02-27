@@ -7,6 +7,8 @@ d3.hemicycle = function() {
         widthIconvar = (typeof(widthIcon) === "function" ? widthIcon(d) : widthIcon),
         widthvar =  (typeof(width) === "function" ? width(d) : width);
         groupsvar =  (typeof(groups) === "function" ? groups(d) : groups);
+    var arcs_val = (typeof(arcs) === "function" ? arcs(d) : arcs),
+        score_val = (typeof(score) === "function" ? score(d) : score);
         
     var rmax = 1 + nvar.length *gapvar*widthIconvar;
     
@@ -56,17 +58,40 @@ d3.hemicycle = function() {
       }
     }
     
-    /*var angle = [{'startangle':0,'endangle':Math.PI/2}];
-
-    var arci = d3.svg.arc()
-                    .startAngle(function(d){return d.startangle})
-                    .endAngle(function(d){return d.endangle})
-                    .outerRadius(x0Scale(rmax))
-                    .innerRadius(0);
-
-    var position = [xScale(0),yScale(0)];*/
-    
     var element = d3.select(this);
+    
+   // ARCS
+    for (key in arcs_val) {
+        arc = arcs_val[key];
+            //correct for +-90:
+        if (arc.start == 0) arc.startangle = -90;
+        else arc.startangle = (data[arc.start].rot + data[arc.start-1].rot)/2;
+        if (arc.end == (data.length -1)) arc.endangle = 90;
+        else arc.endangle = (data[arc.end].rot + data[arc.end+1].rot)/2;
+    }
+    var arci = d3.svg.arc()
+        .startAngle(function(d){
+          return d.startangle/180*Math.PI;
+        })
+        .endAngle(function(d){return d.endangle/180*Math.PI})
+        .outerRadius(xxScale(rmax))
+        .innerRadius(0);
+    var position = [xScale(0),yScale(0)];
+    element.selectAll('.arc') 
+        .data(arcs_val)
+      .enter()
+        .append("path")
+        .attr("d",arci)
+        .attr("transform", "translate(" + position + ")")
+        .attr("fill",function(d) {
+            if (typeof d.color == 'undefined') return 'gray';
+            else return d.color;
+        })
+        .attr("fill-opacity",function(d) {
+            if (typeof d.opacity == 'undefined') return 0.25;
+            else return d.opacity;
+        })
+        .attr("class","arc"); 
     
     var icons = element.selectAll(".icon")
 		    .data(data)
@@ -104,6 +129,35 @@ d3.hemicycle = function() {
             .attr('x',function(d) {return xScale(d.x);})
             .attr('y',function(d) {return yScale(d.y);})          
             .text('\uf007');
+            
+        //SCORE
+        svg.append("text")
+          .attr('font-family', 'sans-serif')
+          .attr('font-size',xxScale(d.widthIcon))        //adjust as needed
+          .attr('font-weight','bold')
+          .attr('text-anchor',"end")
+          .attr('fill', score_val['against']['color'])
+          .attr('x',parseFloat(xScale(0))-parseFloat(xxScale(d.widthIcon*0.15))) 
+          .attr('y',yScale(0))
+          .text(score_val['against']['value']);
+        svg.append("text")
+          .attr('font-family', 'sans-serif')
+          .attr('font-size',xxScale(d.widthIcon))        //adjust as needed
+          .attr('font-weight','bold')
+          .attr('text-anchor',"start")
+          .attr('fill', score_val['for']['color'])
+          .attr('x',parseFloat(xScale(0))+parseFloat(xxScale(d.widthIcon*0.15))) 
+          .attr('y',yScale(0))
+          .text(score_val['for']['value']); 
+        svg.append("text")
+          .attr('font-family', 'sans-serif')
+          .attr('font-size',xxScale(d.widthIcon))        //adjust as needed
+          .attr('font-weight','bold')
+          .attr('text-anchor',"middle")
+          .attr('fill', 'gray')
+          .attr('x',xScale(0)) 
+          .attr('y',yScale(0))
+          .text(':');
 
   });
   }
@@ -133,6 +187,15 @@ d3.hemicycle = function() {
         groups = value;
         return hemicycle;
     };
-
+    hemicycle.arcs = function(value) {
+        if (!arguments.length) return value;
+        arcs = value;
+        return hemicycle;
+    };
+    hemicycle.score = function(value) {
+        if (!arguments.length) return value;
+        score = value;
+        return hemicycle;
+    };
   return hemicycle;
 }

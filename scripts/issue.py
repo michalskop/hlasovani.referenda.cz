@@ -22,9 +22,9 @@ def pro2position(pro):
 
 issue = {
     "id": "hlasovani-referenda-cz",
-    "title": "Hlasování - referenda",
+    "title": "Hlasování.referenda.cz",
     "organization": "Poslanecká sněmovna",
-    "author": "Pro referendum",
+    "author": "Podpoření referenda",
     "phrase": "To se to zelená...",
     "score": "Pro referenda",
     "vote_events": {}

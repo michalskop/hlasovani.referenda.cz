@@ -4,7 +4,9 @@
       "gap": 1.20,
       "widthIcon": 0.39,
       "width": 400,
-      "groups": {$virtualparties}
+      "groups": {$virtualparties},
+      "arcs": {$arcs},
+      "score": {$score}
     }];
    /* Initialize tooltip */	
     tip = d3.tip().attr("class", "d3-tip").html(function(d) {
@@ -24,7 +26,10 @@
                 .gap(function(d) {return d.gap;})
                 .widthIcon(function(d) {return d.widthIcon;})
                 .width(function(d) {return d.width;})
-                .groups(function(d) {return d.groups;});  
+                .groups(function(d) {return d.groups;})
+                .arcs(function(d) {return d.arcs;})
+                .score(function(d) {return d.score;})
+                ;  
     
     var item = svg.selectAll(".hc")
           .data(hemicycle)

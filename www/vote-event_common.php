@@ -19,6 +19,7 @@ if (!isset($_GET['identifier']) or $_GET['identifier'] == '') {
 $ve_id = trim($_GET['identifier']);
 
 $parties = [];
+$data = [];
 
 $group2party = new stdClass();
 foreach ($partiesjson as $pkey => $party) {
@@ -57,7 +58,13 @@ foreach($vote_events->$ve_id->votes as $vkey => $v) {
   $p->background = single_match2color($p->single_match);
   $p->opacity = single_match2opacity($p->single_match);
   $parties[$party_id]->people[] = $p;
+  $data[] = $p;
 }
+
+//sort people by single match
+usort($data, function($a, $b) {
+  return $a->single_match - $b->single_match;
+});
 
 // sort parties by position
 usort($parties, function($a, $b) {
@@ -108,10 +115,62 @@ foreach($parties as $key => $party) {
 //vote event
 $vote_event = (object)array_merge((array)$issue->vote_events->$ve_id, (array)$vote_events->$ve_id);
 
+//arcs
+$arcs = create_arcs($data);
+
+//score
+$score = calculate_score($data);
+
 $smarty->assign('title',$issue->vote_events->$ve_id->name);
 $smarty->assign('vote_event',$vote_event);
 $smarty->assign('issue',$issue);
 $smarty->assign('virtualparties',json_encode($virtualparties));
+$smarty->assign('arcs',json_encode($arcs));
+$smarty->assign('score',json_encode($score));
 $smarty->assign('parties',$parties);
 
+
+function create_arcs($data) {
+    $single_match2option_meaning = [
+        1 => 'for',
+        0 => 'neutral',
+        -1 => 'against'
+    ];
+    $limits = [
+        'for'=>['lo'=>null,'hi'=>null,'color'=>'green'],
+        'against'=>['lo'=>null,'hi'=>null,'color'=>'darkred'],
+    ];
+    foreach($data as $key=>$row) {
+        if (isset($limits[$single_match2option_meaning[$row->single_match]])){
+            if (is_null($limits[$single_match2option_meaning[$row->single_match]]['lo']))
+                $limits[$single_match2option_meaning[$row->single_match]]['lo'] = $key;
+            $limits[$single_match2option_meaning[$row->single_match]]['hi'] = $key;
+        }
+    }
+    $arcs = [];
+    foreach ($limits as $limit) {
+        if (!is_null($limit['lo'])) {
+            $a = new StdClass();
+            $a->start = $limit['lo'];
+            $a->end = $limit['hi'];
+            $a->color = $limit['color'];
+            $a->opacity = 0.15;
+            $arcs[] = $a;
+        }
+    }
+    return $arcs;
+}
+
+function calculate_score($data) {
+    $single_match2option_meaning = [
+        1 => 'for',
+        0 => 'neutral',
+        -1 => 'against'
+    ];
+    $score = ['for'=>['value'=>0,'color'=>'green'],'neutral'=>['value'=>0,'color'=>'gray'],'against'=>['value'=>0,'color'=>'darkred'],];
+    foreach ($data as $row) {
+        $score[$single_match2option_meaning[$row->single_match]]['value']++;
+    }
+    return $score;
+}
 ?>
