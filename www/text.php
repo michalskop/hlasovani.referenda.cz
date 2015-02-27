@@ -38,7 +38,7 @@ $text = [
   'voted_male' => 'Hlasoval',
   'voted_female' => 'Hlasovala',
   'voted_neutral' => 'Hlasování',
-  'recommends' => 'doporučuje',
+  'recommends' => '',
   'weight' => 'Váha hlasování',
   'vote-events' => 'Hlasování',
   

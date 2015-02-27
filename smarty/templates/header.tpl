@@ -1,4 +1,4 @@
-<div class="navbar navbar-default">
+<div class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
       <a href="../" class="navbar-brand">{$header['name']}</a>

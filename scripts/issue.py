@@ -5,7 +5,7 @@ see issue-example.json
 import json
 import requests
 
-url = "https://spreadsheets.google.com/feeds/list/12Q6BTpzH6_2ppMzf7orLLkynmX5c5ecNosnqtlx6tXg/1/public/full?alt=json"
+url = "https://spreadsheets.google.com/feeds/list/1EwjX7rWYMTD2M6N0tHFIxQHr3RkU4cefKNYWO0A5WoE/1/public/full?alt=json"
 r = requests.get(url)
 r.raise_for_status()
 
@@ -21,12 +21,12 @@ def pro2position(pro):
         
 
 issue = {
-    "id": "rosnicka",
-    "title": "Poslanecká rosnička",
+    "id": "hlasovani-referenda-cz",
+    "title": "Hlasování - referenda",
     "organization": "Poslanecká sněmovna",
-    "author": "Zelený kruh",
+    "author": "Pro referendum",
     "phrase": "To se to zelená...",
-    "score": "Zelené hlasy",
+    "score": "Pro referenda",
     "vote_events": {}
 }
 i = 0   #last term only
