@@ -6,14 +6,14 @@ $text = [
   'lang' => 'cs',
   'locale' => 'cs_CZ.utf8',
 
-  'author' => 'KohoVolit.eu, Zelený kruh',
-  'description' => 'Poslanecká rosnička',
-  'keywords' => 'hlasování, sněmovna, poslanecká rosnička',
+  'author' => 'KohoVolit.eu',
+  'description' => 'Hlasování o referendech v Poslanecké sněmovně',
+  'keywords' => 'hlasování, sněmovna, referendum, referenda',
   //fb
-  'og:image' => 'http://rosnicka.zelenykruh.cz/image/treefrog.jpg',
-  'og:title' => 'Poslanecká rosnička',
-  'og:url' => 'http://rosnicka.zelenykruh.cz',
-  'og:site_name' => 'Poslanecká rosnička',
+  'og:image' => 'http://hlasovani.referenda.cz/image/Arabic_aristotle.jpg',
+  'og:title' => 'Hlasování.referenda.cz',
+  'og:url' => 'http://hlasovani.referenda.cz',
+  'og:site_name' => 'Hlasování.referenda.cz',
   'author_link' => 'http://kohovolit.eu',
   
   'google_analytics_code' => 'UA-8592359-18',
