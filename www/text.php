@@ -10,9 +10,9 @@ $text = [
   'description' => 'Hlasování o referendech v Poslanecké sněmovně',
   'keywords' => 'hlasování, sněmovna, referendum, referenda',
   //fb
-  'og:image' => '//hlasovani.referenda.cz/image/Arabic_aristotle.jpg',
+  'og:image' => 'https://hlasovani.referenda.cz/image/Arabic_aristotle.jpg',
   'og:title' => 'Hlasování.referenda.cz',
-  'og:url' => '//hlasovani.referenda.cz',
+  'og:url' => 'https://hlasovani.referenda.cz',
   'og:site_name' => 'Hlasování.referenda.cz',
   'author_link' => 'http://kohovolit.eu',
 
