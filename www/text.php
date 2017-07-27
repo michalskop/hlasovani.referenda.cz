@@ -10,30 +10,30 @@ $text = [
   'description' => 'Hlasování o referendech v Poslanecké sněmovně',
   'keywords' => 'hlasování, sněmovna, referendum, referenda',
   //fb
-  'og:image' => 'http://hlasovani.referenda.cz/image/Arabic_aristotle.jpg',
+  'og:image' => '//hlasovani.referenda.cz/image/Arabic_aristotle.jpg',
   'og:title' => 'Hlasování.referenda.cz',
-  'og:url' => 'http://hlasovani.referenda.cz',
+  'og:url' => '//hlasovani.referenda.cz',
   'og:site_name' => 'Hlasování.referenda.cz',
   'author_link' => 'http://kohovolit.eu',
-  
+
   'google_analytics_code' => 'UA-8592359-18',
 
   'terms' => 'Období',
   'all_terms' => 'Všechna volební období',
   'term' => 'Období',
-  
+
   'parties' => 'Strany',
   'representatives' => 'Poslanci',
   'vote_events' => 'Hlasování',
-  
+
   'widgets' => 'Widgety',
   'about' => 'O projektu',
   'methodology' => 'Metodika',
-  
+
   'select_people_parties' => 'Vybrat strany, lidi ...',
 
   'party' => 'Strana',
-  
+
   'voted' => 'Hlasoval/a',
   'voted_male' => 'Hlasoval',
   'voted_female' => 'Hlasovala',
@@ -41,12 +41,12 @@ $text = [
   'recommends' => '',
   'weight' => 'Váha hlasování',
   'vote-events' => 'Hlasování',
-  
+
   'pro_issue' => [
     '1' => 'pro návrh',
     '-1' => 'proti návrhu'
   ],
-  
+
   'vote_options' => [
     'yes' => 'ano',
     'no' => 'ne',
@@ -58,23 +58,23 @@ $text = [
     'absent_female' => 'nepřítomna',
     'not voting' => 'nehlasoval/a'
   ],
-  
+
   'legend' => 'Legenda',
   'legend_ok' => 'Hlasovali v souladu',
   'legend_ko' => 'Hlasovali opačně',
   'vote_event' => 'Hlasování',
-  
+
   'year' => 'Rok',
-  
+
   'tags' => 'Kategorie',
-  
+
   'vote-event_unknown_identifier_warning' => 'Neznámé hlasování',
   'no_person_warning' => 'Není vybrán žádný poslanec',
   'person_unknown_identifier_warning' => 'Neznámý poslanec',
   'person_no_vote-events_warning' => 'Daný poslanec nemá v zadaném období žádné hlasování',
   'no_party_warning' => 'Není vybrána žádná strana',
   'party_no_vote-events_warning' => 'Daná strana nemá v zadaném období žádné hlasování',
-  
+
   'name' => 'Jméno',
   'ok?' => 'V souladu?',
   'ok' => 'V souladu',
