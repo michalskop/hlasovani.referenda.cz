@@ -33,7 +33,7 @@ $terms = json_decode(file_get_contents($path . "json/terms.json"));
 $header = [
   'name' => $issue->title,
   'terms' => $terms,
-  'link_without_term' => 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?'.strip_term($_GET),
+  'link_without_term' => 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME'].'?'.strip_term($_GET),
 ];
 
 $smarty->assign('header',$header);
